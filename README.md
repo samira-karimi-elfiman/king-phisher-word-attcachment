@@ -132,8 +132,17 @@ note: docx_generator and pdf_generator can not be activated at the same time
 
     End Function
 
-5- Create the Word file with the template defined in the previous step. Create the Word file with the template defined in the previous step and just write the following command in it and whiten its color.
+5- Create the Word file with the template defined in the previous step and just write the following command in it and whiten its color.
 
     {{ secret_id }}
   
 note: All config variables are returned in the code and you can define each of them in your Word file according to your needs.
+
+6- After completing these steps, you place the template file created in step 4 on the server and change its premission so that it can be downloaded by everyone. Then you have to put the address of this file in the created Word file.To do this, zip the Word file and extract it and go to the following path:
+
+    word_rels\settings.xml.rels
+    
+And replace the dotm file address with its local address in the Target section. see code below
+
+    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+    <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/attachedTemplate" Target="http://[web_server_address]/[name].dotm" TargetMode="External"/>     </Relationships>
